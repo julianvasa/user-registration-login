@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html
+    lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="mainbox col-lg-6 offset-md-3 col-md-8 offset-sm-2" id="loginbox" style="margin-top: 20px;">
+        <div class="card card-inverse card-info">
+            <div class="card-header">
+                <div class="card-title" style="float:left;margin-bottom:0px;">[[#{signin}]]</div>
+            </div>
+        </div>
+        <div class="card-block" style="padding-top: 30px;">
+            <div class="alert alert-success" style="border-radius:0" th:if="${logout}">
+                [[#{just_logout}]]
+            </div>
+            <div class="alert alert-success" style="border-radius:0" th:if="${signup_done}">
+                [[#{just_signup}]]
+            </div>
+            <div class="alert alert-danger" id="login-alert" style="border-radius:0"
+                 th:if="${loginError}">[[#{invalid_pass}]]
+            </div>
+            <div class="alert alert-danger" style="border-radius:0"
+                 th:if="${denied}">[[#{denied}]]
+            </div>
+
+            <form id="loginform" method="post" role="form"
+                  style="width: 90%; margin: 0 auto;" th:action="@{/login}">
+                <div class="input-group" style="margin-bottom: 25px;"><span class="input-group-addon"><i
+                    class="glyphicon glyphicon-user"></i></span>
+                    <input
+                        class="form-control" id="login-username" name="username"
+                        th:placeholder="#{userName}"
+                        type="text"
+                        value=""/>
+                </div>
+                <div class="input-group" style="margin-bottom: 25px;"><span class="input-group-addon"><i
+                    class="glyphicon glyphicon-lock"></i></span>
+                    <input
+                        class="form-control" id="login-password" name="password"
+                        th:placeholder="#{plainTextPassword}"
+                        type="password"/>
+                </div>
+
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <div class="col-md-12 controls"><input class="btn-primary" type="submit" value="Sign In"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 control">
+                        <div style="padding-top: 15px; font-size: 85%;">[[#{dont_have_account}]]
+                            <a href="#"
+                               onclick="$('#loginbox').hide(); $('#signupbox').show()">
+                                [[#{signup}]]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="mainbox col-lg-6 offset-md-3 col-md-8 offset-sm-2" id="signupbox"
+     style="display: none; margin-top: 50px;">
+    <div class="card card-inverse card-info">
+        <div class="card-header">
+            <div class="card-title" style="margin-bottom:0px; float:left;">[[#{signup}]]</div>
+            <div style="float: right; font-size: 85%; position: relative;">
+                <a href="#" id="signinlink"
+                   onclick="$('#signupbox').hide(); $('#loginbox').show()">[[#{signin}]]</a>
+            </div>
+        </div>
+        <div class="card-block">
+            <form id="signupform" method="post" th:object="${user}"
+                  role="form" style="width: 90%; margin: 0 auto;padding-top:20px;" th:action="@{/signup}">
+                <div class="alert alert-danger" id="signupalert" style="display: none;">
+                    <p>Error:</p> <span></span>
+                </div>
+                <div class="input-group" style="margin-bottom: 25px;"><span class="input-group-addon"><i
+                    class="glyphicon glyphicon-user"></i></span>
+                    <input
+                        class="form-control" id="firstName" name="firstName"
+                        th:placeholder="#{firstName}"
+                        type="text"
+                        value=""/>
+                </div>
+                <div class="input-group" style="margin-bottom: 25px;"><span class="input-group-addon"><i
+                    class="glyphicon glyphicon-user"></i></span>
+                    <input
+                        class="form-control" id="lastName" name="lastName"
+                        th:placeholder="#{lastName}"
+                        type="text"
+                        value=""/>
+                </div>
+                <div class="input-group" style="margin-bottom: 25px;"><span class="input-group-addon"><i
+                    class="glyphicon glyphicon-user"></i></span>
+                    <input
+                        class="form-control" id="userName" name="userName"
+                        th:placeholder="#{userName}"
+                        type="text"
+                        value=""/>
+                </div>
+                <div class="input-group" style="margin-bottom: 25px;"><span class="input-group-addon"><i
+                    class="glyphicon glyphicon-lock"></i></span>
+                    <input
+                        class="form-control" id="plainTextPassword" name="plainTextPassword"
+                        th:placeholder="#{plainTextPassword}"
+                        type="password"/>
+                </div>
+                <div class="form-group">
+                    <!-- Button -->
+                    <div class="col-md-12 controls">
+                        <button class="btn btn-info" id="btn-signup" type="submit"><i class="icon-hand-right"></i>[[#{signup}]]
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

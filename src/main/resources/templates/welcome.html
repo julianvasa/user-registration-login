@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html
+    lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="mainbox col-lg-6 offset-md-3 col-md-8 offset-sm-2" id="loginbox" style="margin-top: 20px;">
+        <div class="card card-inverse card-info">
+            <div class="card-header">
+                <div class="card-title" style="margin-bottom:0px;">
+                    <span th:text="'Hello, ' + ${#authentication.getPrincipal().getUsername()}"></span>
+                    <a href="/logout" style="float: right;">
+                        [[#{logout}]]
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
